@@ -1,0 +1,87 @@
+파이썬으로 무언가 개발할 땐 가상환경을 만들고, 개발하고자 하는 라이브러리를 설치한다.
+
+가상환경 활성화 <activate>
+cd source\falsksource\venv\Scripts\activate
+
+venv라는 가상환경 생성
+pythoon -m venv venv
+
+flask 라이브러리 설치
+pip install flask
+
+(ctrl +shift + p)
+gitignore >
+python
+venv
+
+flask
+ - 파이썬 웹 애플리케이션 프레임워크(==spring) 
+ <>
+ - "django"도 동일하게 파이썬 웹 애플리케이션 프레임워크
+
+ [비교]
+ falsk                  django
+ 경량 프레임워크 <> 모든 기능 제공하는 제공
+                    관리자 페이지, 시큐리니 기능제공
+                        
+
+WSGI(Web Server Gateway Interface )Server
+ - 웹 서버와 웹애플리케이션(파이썬 애플리케이션) 간의 인터페이스를 정의하는 표준
+ --> 파이썬을 이해해서 응답할 수 있는 서버라고 생각하면 됨
+
+            #1
+            flask --app todo/hello run
+            * Serving Flask app 'todo/hello'
+            * Debug mode: off
+            연습용 서버이므로, 외부에서 실제로 접근할 수 있는 서버가 아니라는 의미.
+            WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+            * Running on http://127.0.0.1:5000 [이 서버를 누르면, 코딩한 Hello가 뜬다.]
+            Press CTRL+C to quit
+                    
+            #2
+            $ flask --app todo/hello run --debug  디버그를 킴
+            * Serving Flask app 'todo/hello'
+            * Debug mode: on
+            WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+            * Running on http://127.0.0.1:5000
+            Press CTRL+C to quit   
+            * Restarting with stat
+            * Debugger is active!
+            * Debugger PIN: 603-329-335
+
+
+프로젝트 구조(flask 에서 지정한 별도의 구조는 없음.) + django 구조도 동일
+
+    폴더 -- app 폴더 생성(todo)
+        |
+        ----- forms.py : DTO 역할
+        ----- views.py(여러개  작성) : controller 역할
+        ----- models.py : Entity 역할
+        ----- templates 폴더 : 탬플릿 파일(html)
+        ----- static 폴더 : css,js,img
+    config.py : 환경변수 저장.
+
+
+블루프린트 : 라우팅(경로지정하는함수)의 체계적 관리
+
+
+ORM(Object-Relational Mapping)과 데이터베이스
+ORM : "객체 <-> 데이터베이스"를 자동으로 연결해주는 기술로, SQL 없이도 DB 작업을 객체처럼 할 수 있게 해주는 도구 (클래스 == 테이블)
+ - 자바에선 ORM을 사용하기 위해 JAP(API기반인) 사용했고 --> 구현체는 하이버네이트(Hibernate)
+ - 파이썬-Flask에선 ORM 라이브러리인 "SQLAlchemy"을 사용한다.
+ - pip install SQLAlchemy
+ - pip install flask-migrate
+
+ --DB
+ --- todo 앱이 SQLAlchemy 사용할 준비가 됐다
+ --- set FLASK_APP=todo
+ --- flask db init
+ 
+ db 생성
+    flask db migrate
+
+table 생성
+    flask db upgrade
+
+URL (Uniform Resource Locator): 네트워크 상에서 자원의 구체적인 위치를 나타내는 통합 자원 지시자
+URI (Uniform Resource Identifier): 네트워크 상의 자원을 식별하는 통합 자원 식별자
