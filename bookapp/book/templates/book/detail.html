@@ -1,0 +1,41 @@
+<!-- fextends, fblock -->
+{% extends "base.html" %} {% block content %}
+<div class="row mb-3">
+  <h1>Todo 상세</h1>
+</div>
+
+  <form>    
+     <div class="mb-3">
+      <label for="code" class="form-label">Code</label>
+      <input type="text" class="form-control" name="title" id="code" value="{{book.code.data}}" readonly/>
+    </div>
+
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input type="text" class="form-control" name="title" id="title" value="{{book.title.data}}" readonly/>
+    </div>
+    <div class="mb-3">
+      <label for="author" class="form-label">Author</label>
+      <input type="text" class="form-control" name="author" id="author"  value="{{book.author.data}}" readonly/>
+   </div>
+
+    <div class="mb-3">
+      <label for="price" class="form-label">Price</label>
+      <input type="text" class="form-control" name="price" id="price" value="{{book.price.data}}" readonly/>
+    </div>
+
+      <div class="mb-3">
+       <label for="description" class="form-label">Description</label>
+       <textarea name="description" id="description" rows="10" class="form-control" readonly>{{book.description.data or ''}}</textarea>
+      </div>
+
+      {% if g.user %}
+      <a href="{{ url_for('book.edit', code=book.code ) }}" class="btn btn-success"> 수정</a>
+      {% endif %}
+
+    <a href="{{ url_for('book.list') }}" class="btn btn-primary"> 목록</a>
+  </form>
+</div>
+{% endblock %}
+
+

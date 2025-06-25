@@ -1,0 +1,35 @@
+<!-- fextends, fblock -->
+{% extends "base.html" %} {% block content %}
+<form method="post">
+  {% include "errors.html" %} {{form.csrf_token}}
+
+    <div class="mb-3">
+      <label for="code" class="form-label">Code</label>
+      <input type="text" name="code" class="form-control" name="title" id="code" value="{{form.code.data}}" readonly/>
+    </div>
+
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input type="text" class="form-control" name="title" id="title" value="{{form.title.data}}" readonly/>
+    </div>
+    <div class="mb-3">
+      <label for="author" class="form-label">Author</label>
+      <input type="author" class="form-control" name="author" id="author"  value="{{form.author.data}}" readonly/>
+   </div>
+    <div class="mb-3">
+      <label for="price" class="form-label">Price</label>
+      <input type="text" class="form-control" name="price" id="price"  value="{{form.price.data}}"/>
+   </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>                      
+      <textarea name="description" id="description" rows="10" class="form-control" >{{form.description.data or ''}}</textarea>
+   </div>
+
+    <button type="submit" class="btn btn-success">수정</button>
+    <a class="btn btn-danger" href="{{ url_for('book.remove',code=form.code.data) }}"> 삭제</a>
+    <a href="{{ url_for('book.list') }}" class="btn btn-primary"> 목록</a>
+  </form>
+</div>
+{% endblock %}
+
+

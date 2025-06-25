@@ -1,5 +1,4 @@
 # 본 프로그램 == java entity
-
 from todo import db
 from sqlalchemy import text
 
